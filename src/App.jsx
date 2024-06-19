@@ -21,12 +21,12 @@ function App() {
             )}
             <h2>Start by uploading your images.</h2>
             <form id="get-started" onSubmit={uploadImage}>
-                <label className="image-container">
+                <div className="image-container">
                     <img
                         src={imageFile && URL.createObjectURL(imageFile)}
                         alt="selected image"
                     />
-                    <span className=" mt-auto flex gap-1 w-full justify-between bg-sky-300 rounded-r-md">
+                    <label className=" mt-auto flex gap-1 w-full justify-between bg-sky-300 rounded-r-md">
                         <input
                             className="p-2"
                             onChange={(e) => {
@@ -45,8 +45,8 @@ function App() {
                         >
                             &#215;
                         </button>
-                    </span>
-                </label>
+                    </label>
+                </div>
             </form>
         </>
     );

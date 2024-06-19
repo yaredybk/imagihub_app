@@ -37,12 +37,12 @@ a.get-started:focus-visible {
     margin-inline:auto;
     margin-bottom: 3rem;
 }
-label.image-container{
+div.image-container{
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
 }
-label.image-container img{
+div.image-container img{
     width: 100%;
     max-width: 20rem;
     max-height: 24rem;
