@@ -29,7 +29,7 @@ a.get-started:focus-visible {
     transition: outline-offset ease 200ms;
 }
 #get-started {
-    /* margin-top: calc(var(--h-header) + 1rem); */
+    margin-top: calc(var(--h-header) + 1rem);
     min-height: calc(90vh - var(--h-header));
     min-height: calc(90svh - var(--h-header));
     width: fit-content;
