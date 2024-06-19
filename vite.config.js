@@ -9,7 +9,7 @@ export default defineConfig({
         react(),
     ],
     server: {
-        port: 3050,
+        port: 5001,
         // https: {
         //     key: "../server.key",
         //     cert: "../server.crt",
