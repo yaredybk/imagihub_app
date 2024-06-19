@@ -39,15 +39,13 @@ a.get-started:focus-visible {
 }
 label.image-container{
     box-sizing: border-box;
-    max-width: 20rem;
-    max-height: 24rem;
     position: relative;
     overflow: hidden;
 }
 label.image-container img{
     width: 100%;
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 20rem;
+    max-height: 24rem;
     overflow: hidden;
     object-fit: cover;
 
