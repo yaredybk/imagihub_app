@@ -33,11 +33,11 @@ a.get-started:focus-visible {
     min-height: calc(90vh - var(--h-header));
     min-height: calc(90svh - var(--h-header));
     width: fit-content;
-    outline: gray 1px solid ;
     margin-inline:auto;
     margin-bottom: 3rem;
 }
 div.image-container{
+    outline: gray 1px solid ;
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
