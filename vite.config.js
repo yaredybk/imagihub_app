@@ -7,44 +7,20 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
     plugins: [
         react(),
-        // VitePWA({
-        //     strategies: "injectManifest",
-        //     srcDir: "pwa",
-        //     filename: "sw.js",
-        //     outDir: "dist",
-        //     injectRegister: false,
-        //     workbox: {
-        //         globDirectory: "dist",
-        //         globPatterns: [
-        //             "**/*.{js,css,PNG,otf,ttf,html,svg,jpg,png,webp,gif}",
-        //         ],
-        //         swDest: "dist/sw.js",
-        //         ignoreURLParametersMatching: [
-        //             /^utm_/,
-        //             /^fbclid$/,
-        //             /^source/,
-        //             /^cols/,
-        //             /^cursor/,
-        //         ],
-        //     },
-        //     // registerType
-        //     manifest: manifest,
-        // }),
     ],
     server: {
         port: 3050,
-        https: {
-            key: "../garage_server_v2/cert/cert_nov2023_daniel/server.key",
-            cert: "../garage_server_v2/cert/cert_nov2023_daniel/server.crt",
-        },
-        fs: {
-            allow: [
-                "./",
-                // "../garage_web_app_v2/image/",
-                "../garage_web_app_v2/public/",
-                "../garage_web_app_v2/",
-            ],
-        },
+        // https: {
+        //     key: "../server.key",
+        //     cert: "../server.crt",
+        // },
+        // fs: {
+        //     allow: [
+        //         "./",
+        //         "..//public/",
+        //         "..//",
+        //     ],
+        // },
         proxy: {
             "^/(api|files)/.*": {
                 secure: false,
@@ -54,8 +30,8 @@ export default defineConfig({
         },
     },
     build: {
-        copyPublicDir: false,
+        // copyPublicDir: false,
     },
     
-    publicDir: "../garage_web_app_v2/public",
+    // publicDir: "..//public",
 });
