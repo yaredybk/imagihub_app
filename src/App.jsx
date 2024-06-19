@@ -21,12 +21,12 @@ function App() {
             )}
             <h2>Start by uploading your images.</h2>
             <form id="get-started" onSubmit={uploadImage}>
-                <div className="image-container">
+                <div className="image-container shadow-md">
                     <img
                         src={imageFile && URL.createObjectURL(imageFile)}
                         alt="selected image"
                     />
-                    <label className=" mt-auto flex gap-1 w-full justify-between bg-sky-300 rounded-r-md">
+                    <label className=" mt-auto flex gap-1 w-full justify-between bg-sky-300 ">
                         <input
                             className="p-2"
                             onChange={(e) => {
@@ -41,7 +41,7 @@ function App() {
                             title="clear selection"
                             type="button"
                             onClick={() => setimageFile()}
-                            className="bg-red-400 text-2xl border-none font-extrabold hover:bg-red-600 px-2 p-1 rounded-md"
+                            className="bg-red-400 text-2xl border-none font-extrabold hover:bg-red-600 px-2 p-1"
                         >
                             &#215;
                         </button>
