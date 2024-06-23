@@ -25,7 +25,7 @@ export default defineConfig({
             "^/(api|files)/.*": {
                 secure: false,
                 changeOrigin: true,
-                target: "https://localhost",
+                target: `http://127.0.0.1:5002`,
             },
         },
     },
