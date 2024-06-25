@@ -85,3 +85,6 @@ section.hero h2 {
 section.hero p {
     font-weight: bolder;
 }
+input:invalid{
+    background-color: rgba(255, 0, 0, 0.2);
+}

@@ -10,10 +10,10 @@ export default defineConfig({
     ],
     server: {
         port: 5001,
-        // https: {
-        //     key: "../server.key",
-        //     cert: "../server.crt",
-        // },
+        https: {
+            key: "./cert/tmp/server.key",
+            cert: "./cert/tmp/server.crt",
+        },
         // fs: {
         //     allow: [
         //         "./",

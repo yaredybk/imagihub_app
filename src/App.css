@@ -1,41 +1,6 @@
 @tailwind utilities;
 
-a.get-started {
-    display: inline-block;
-    text-decoration: none;
-    cursor: pointer;
-    position: sticky;
-    bottom: 2rem;
-    z-index: 5;
-    transform: translateX(calc(50vw - 50%));
-    font-family: cursive, fantasy, "Segoe UI", Tahoma, Geneva, Verdana,
-        sans-serif;
-    padding: 0.5rem 1.5rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    font-size: 1.3rem;
-    background-image: linear-gradient(30deg, var(--c1), var(--c2));
-    border: none;
-    border-radius: 1.5rem;
-    box-shadow: 0px 0px 10px 5px rgb(91, 217, 255);
-    outline: blue 1px solid;
-    /* animation: bg-loop 1s ease  infinite  ; */
-    /* transition: all ease 3s; */
-}
-a.get-started:hover,
-a.get-started:focus-visible {
-    outline-offset: 4px;
-    outline-width: 2px;
-    transition: outline-offset ease 200ms;
-}
-div#get-started {
-    margin-top: var(--h-header);
-    width: fit-content;
-    margin-inline: auto;
-    width: min(20rem, 100%);
-    margin-bottom: 3rem;
-    box-shadow: 4px 4px 5px 2px black, -2px -2px 8px 2px gray;
-}
+
 div.image-container {
     width: min(20rem, 100%);
     height: min(80vh, 24rem);
