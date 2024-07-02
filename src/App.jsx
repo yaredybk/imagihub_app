@@ -97,7 +97,7 @@ function Sender() {
             })
             .then(async (r) => {
                 setUploaded(r.new);
-                sentImages.findIndex((i) => i.dir == r.new.dir) != -1 &&
+                (sentImages.findIndex((i) => i.dir == r.new.dir) != -1 || sentImages.length == 0)&&
                     setSentImages([...sentImages, r.new]);
                 setimageFile();
                 setHeroBtn({
@@ -311,7 +311,7 @@ function Receiver() {
             .then((r2) => {
                 setimageFile(r2);
                 addToList &&
-                    receivedImages.findIndex((i) => i.dir == dir) == -1 &&
+                    (receivedImages.findIndex((i) => i.dir == dir) == -1 || receivedImages.length == 0) &&
                     setreceivedImages([...receivedImages, { dir, name: dir }]);
                 setHeroBtn({
                     title: "share",
