@@ -97,7 +97,7 @@ function Sender() {
             })
             .then(async (r) => {
                 setUploaded(r.new);
-                sentImages.findIndex((i) => i.dir == r.new.dir) != -1 &&
+                (sentImages.findIndex((i) => i.dir == r.new.dir) == -1 || sentImages.length == 0)&&
                     setSentImages([...sentImages, r.new]);
                 setimageFile();
                 setHeroBtn({
@@ -214,6 +214,7 @@ function Sender() {
                                 dir: "",
                                 name: "",
                             });
+                            setimageFile();
                             // document.getElementById("image").value = "";
                         }}
                         className="bg-red-400 absolute right-0 top-0 text-2xl border-none font-extrabold hover:bg-red-600 px-2 "
@@ -311,7 +312,7 @@ function Receiver() {
             .then((r2) => {
                 setimageFile(r2);
                 addToList &&
-                    receivedImages.findIndex((i) => i.dir == dir) == -1 &&
+                    (receivedImages.findIndex((i) => i.dir == dir) == -1 || receivedImages.length == 0) &&
                     setreceivedImages([...receivedImages, { dir, name: dir }]);
                 setHeroBtn({
                     title: "share",
