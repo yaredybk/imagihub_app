@@ -329,6 +329,4 @@ async function StaleWhileRevalidate(e, n) {
                 })
             )
     );
-    7 - 78;
-    0;
 }
