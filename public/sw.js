@@ -155,11 +155,12 @@ self.addEventListener("fetch", async (e) => {
             CacheFirst(e, "sent_images");
             break;
 
+            // i can not fix request.clone() then r.formdata() ERROR
         // images get route
-        case A.pathname.startsWith("/api/v1/anon/images") &&
-            e.request.method === "POST":
-            StoreAndPost(e, "sent_images");
-            break;
+        // case A.pathname.startsWith("/api/v1/anon/images") &&
+        //     e.request.method === "POST":
+        //     StoreAndPost(e, "sent_images");
+        //     break;
 
         // Assets route
         case A.pathname.startsWith("/assets/"):
@@ -270,7 +271,9 @@ async function CacheFirst(e, n) {
             )
     );
 }
+
 /**
+ * // not used because i can not fix request.clone() then r.formdata() ERROR
  * @param {Object} e fetch event
  * @param {String} n cache name/folder to open
  * @param {String} k form data key to call formData.get() method
@@ -291,9 +294,6 @@ async function StoreAndPost(e, n, k) {
                             })
                         )
                 );
-            })
-            .catch(async (e) => {
-                return e;
             })
     );
 }

@@ -119,16 +119,15 @@ function Sender() {
                     return r;
                 }
                 
-                // return caches
-                //     .open("sent_images")
-                //     .then((c) =>
-                //         c.put(
-                //             `/api/v1/anon/images/${dir}`,
-                //             new Response(imageFile)
-                //         )
-                //     )
-                //     .then((_) => r)
-                //     .catch((_) => r);
+                return caches
+                    .open("sent_images")
+                    .then((c) =>
+                        c.put(
+                            `/api/v1/anon/images/${dir}`,
+                            new Response(imageFile)
+                        )
+                    )
+                    .catch((e) => console.warn(e));
             })
             .catch((e) => {
                 console.warn(e);
