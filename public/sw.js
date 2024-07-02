@@ -276,7 +276,7 @@ async function CacheFirst(e, n) {
  * @param {String} k form data key to call formData.get() method
  */
 async function StoreAndPost(e, n, k) {
-    let r2 = e.requist.clone();
+    let r2 = e.request.clone();
     e.respondWith(
         fetch(e.request)
             .then((r) => {
