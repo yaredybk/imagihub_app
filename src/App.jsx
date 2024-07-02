@@ -354,7 +354,9 @@ function Receiver() {
                     htmlFor="image"
                     className="grid items-center justify-center text-center  bg-green-300 h-full"
                 >
-                    <h2>Start by filling the id provided by sender.</h2>
+                    <h2>Start by filling the id provided by sender.
+                        or get a link
+                    </h2>
                 </label>
             )}
             <form
