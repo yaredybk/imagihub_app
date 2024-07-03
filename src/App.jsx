@@ -146,7 +146,25 @@ function Sender() {
                     alt="selected image"
                 />
             ) : sentImages?.length ? (
-                <RenderHistoryList listImages={sentImages} />
+                <RenderHistoryList 
+		    onClick={(im)=>{
+			setUploaded(im);
+			setimageFile();
+			setHeroBtn({
+			    title: "share",
+			    onClick: () => {
+				shareInfo({
+				    title: `imagihub | ${im.name}`,
+				    text: im.id,
+				    url:
+					document.location.origin +
+					"/receive/" +
+					im.dir,
+				});
+			    },
+			}); 
+			}} 
+		listImages={sentImages} />
             ) : (
                 <label
                     htmlFor="image"
@@ -289,10 +307,10 @@ function Receiver() {
                 onClick: () => {
                     document.querySelector("#get-started").scrollIntoView();
                     setHeroBtn({
-                        title: "Fill image ID",
+                        title: "Get",
                         onClick: () => {
-                            let a = document.querySelector("#image-id");
-                            a ? a.focus() : console.log(a);
+                            let a = document.querySelector("#get");
+                            a ? a.click() : console.log(a);
                         },
                     });
                 },
@@ -362,29 +380,50 @@ function Receiver() {
             <form
                 className=" mt-auto flex  "
                 onSubmit={(e) => {
+		    let {value:id} = e.target[0];
                     console.warn(e);
+                    console.warn(id);
                     e.preventDefault();
+			fetch(`/api/v1/anon/image/${id}`)
+			.then(r=>r.json())
+			.then(data=>{
+				let {name, dir} = data;
+			dir && getImage(dir);
+			}).catch(e=>console.warn(e))
                 }}
             >
                 <label className=" mt-auto flex gap-1 w-full justify-between bg-gray-300 ">
                     {imageFile ? (
                         <i className="  flex items-center px-2">{dir}</i>
                     ) : (
-                        <input
-                            // ref={idInputRef}
-                            className="m-1"
-                            pattern="[0-9a-zA-Z]{4}"
-                            type="text"
-                            name="image-id"
-                            id="image-id"
-                            placeholder="image id"
-                        />
+			    <span>
+			    <input
+				    // ref={idInputRef}
+				    className="m-1"
+				    pattern="[0-9a-zA-Z]{4}"
+				    type="text"
+				    name="image-id"
+				    id="image-id"
+				    placeholder="image id"
+				/>
+			    <button id="get">
+			    	get
+			    </button>
+			    </span>
+                        
                     )}
                     <button
                         title="clear selection"
                         type="button"
                         onClick={() => {
                             setimageFile();
+			    setHeroBtn({
+				title: "Get",
+				onClick: () => {
+				    let a = document.querySelector("#get");
+				    a ? a.click() : console.log(a);
+				},
+			    });
                             // document.getElementById("image").value = "";
                         }}
                         className="bg-red-400 text-2xl border-none font-extrabold hover:bg-red-600 px-2 p-1"
