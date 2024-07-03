@@ -263,10 +263,10 @@ function Sender() {
                 </div>
                 <div className="flex gap-2 bg-blue-300 p-1 ">
                     <label htmlFor="id" className=" basis-6">
-                        dir
+                        link
                     </label>
                     <span className=" basis-30 flex-1">
-                        .../receive/{uploaded.dir}
+	    {window.location.origin}/receive/{uploaded.dir}
                     </span>
                     <button
                         onClick={() => {
@@ -283,6 +283,7 @@ function Sender() {
                         share
                     </button>
                 </div>
+	    <p className="p-1 rounded-sm bg-red-300 text-red-800">To optimize performance, images are deleted after 2 hours. Stay tuned for future updates on extended storage!</p>
             </div>
         </>
     );
@@ -398,13 +399,23 @@ function Receiver() {
                     ) : (
 			    <span>
 			    <input
-				    // ref={idInputRef}
-				    className="m-1"
-				    pattern="[0-9a-zA-Z]{4}"
-				    type="text"
-				    name="image-id"
-				    id="image-id"
-				    placeholder="image id"
+			    	required
+			    // ref={idInputRef}
+			    className="m-1"
+			    pattern="[0-9a-zA-Z]{4}"
+			    type="text"
+			    name="image-id"
+			    id="image-id"
+			    onChange={()=>{
+				setHeroBtn({
+                                title: "Get",
+                                onClick: () => {
+                                    let a = document.querySelector("#get");
+                                    a ? a.click() : console.log(a);
+                                },
+                            });
+			    }}
+			    placeholder="image id"
 				/>
 			    <button id="get">
 			    	get

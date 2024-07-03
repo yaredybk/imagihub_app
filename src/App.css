@@ -1,6 +1,8 @@
 @tailwind utilities;
 
-
+body {
+	font-family: monospace;
+}
 div.image-container {
     width: min(20rem, 100%);
     height: min(80vh, 24rem);

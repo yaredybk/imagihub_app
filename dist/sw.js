@@ -209,6 +209,7 @@ self.addEventListener("fetch", async (e) => {
 
         // Default (no matching route)
         default:
+		    return;
         // Handle the case where no matching route is found
         // console.warn("Unmatched route:", A.pathname);
         // returning a default response, or using a fallback strategy.
