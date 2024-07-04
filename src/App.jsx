@@ -15,13 +15,11 @@ import { shareInfo } from "./utils/utils";
 import HeroButton from "./components/HeroButton";
 
 export const HeroContext = createContext({
-    title: "",
+    title: "", // title of hero button "Get started" by defualt
     onClick: null, // a function to call on herobutton click
     setHeroBtn: () => {},
 });
 function App() {
-    const { id = "", dir = "" } = useSearchParams();
-
     const [heroBtn, setHeroBtn] = useState({
         title: "",
         onClick: () => {
@@ -97,7 +95,8 @@ function Sender() {
             })
             .then(async (r) => {
                 setUploaded(r.new);
-                (sentImages.findIndex((i) => i.dir == r.new.dir) == -1 || sentImages.length == 0)&&
+                (sentImages.findIndex((i) => i.dir == r.new.dir) == -1 ||
+                    sentImages.length == 0) &&
                     setSentImages([...sentImages, r.new]);
                 setimageFile();
                 setHeroBtn({
@@ -114,11 +113,7 @@ function Sender() {
                     },
                 });
                 let { dir, name, id } = r.new;
-                if (window.location.protocol !== "https:") {
-                    console.warn("dev");
-                    return r;
-                }
-                
+                if (window.location.protocol !== "https:") return;
                 return caches
                     .open("sent_images")
                     .then((c) =>
@@ -146,25 +141,26 @@ function Sender() {
                     alt="selected image"
                 />
             ) : sentImages?.length ? (
-                <RenderHistoryList 
-		    onClick={(im)=>{
-			setUploaded(im);
-			setimageFile();
-			setHeroBtn({
-			    title: "share",
-			    onClick: () => {
-				shareInfo({
-				    title: `imagihub | ${im.name}`,
-				    text: im.id,
-				    url:
-					document.location.origin +
-					"/receive/" +
-					im.dir,
-				});
-			    },
-			}); 
-			}} 
-		listImages={sentImages} />
+                <RenderHistoryList
+                    onClick={(im) => {
+                        setUploaded(im);
+                        setimageFile();
+                        setHeroBtn({
+                            title: "share",
+                            onClick: () => {
+                                shareInfo({
+                                    title: `imagihub | ${im.name}`,
+                                    text: im.id,
+                                    url:
+                                        document.location.origin +
+                                        "/receive/" +
+                                        im.dir,
+                                });
+                            },
+                        });
+                    }}
+                    listImages={sentImages}
+                />
             ) : (
                 <label
                     htmlFor="image"
@@ -293,8 +289,32 @@ function Sender() {
                         share
                     </button>
                 </div>
-
-	    <p className="p-1 rounded-sm bg-red-300 text-red-800">To optimize performance, images are deleted after 2 hours. Stay tuned for future updates on extended storage!</p>
+                <div className="flex gap-2 bg-blue-300 p-1 ">
+                    <label htmlFor="id" className=" basis-6">
+                        link
+                    </label>
+                    <span className=" basis-30 flex-1">
+                        {window.location.origin}/receive/{uploaded.dir}
+                    </span>
+                    <button
+                        onClick={() => {
+                            shareInfo({
+                                title: `imagihub | ${uploaded.name}`,
+                                text: uploaded.id,
+                                url:
+                                    document.location.origin +
+                                    "/receive/" +
+                                    uploaded.dir,
+                            });
+                        }}
+                    >
+                        share
+                    </button>
+                </div>
+                <p className="p-1 rounded-sm bg-red-300 text-red-800">
+                    To optimize performance, images are deleted after 2 hours.
+                    Stay tuned for future updates on extended storage!
+                </p>
             </div>
         </>
     );
@@ -342,7 +362,8 @@ function Receiver() {
             .then((r2) => {
                 setimageFile(r2);
                 addToList &&
-                    (receivedImages.findIndex((i) => i.dir == dir) == -1 || receivedImages.length == 0) &&
+                    (receivedImages.findIndex((i) => i.dir == dir) == -1 ||
+                        receivedImages.length == 0) &&
                     setreceivedImages([...receivedImages, { dir, name: dir }]);
                 setHeroBtn({
                     title: "share",
@@ -384,15 +405,16 @@ function Receiver() {
                     htmlFor="image"
                     className="grid items-center justify-center text-center  bg-green-300 h-full"
                 >
-                    <h2>Start by filling the id provided by sender.
-                        or get a link
+                    <h2>
+                        Start by filling the id provided by sender. or get a
+                        link
                     </h2>
                 </label>
             )}
             <form
                 className=" mt-auto flex  "
                 onSubmit={(e) => {
-		    let {value:id} = e.target[0];
+                    let { value: id } = e.target[0];
                     console.warn(e);
                     console.warn(id);
                     e.preventDefault();
@@ -408,44 +430,42 @@ function Receiver() {
                     {imageFile ? (
                         <i className="  flex items-center px-2">{dir}</i>
                     ) : (
-			    <span>
-			    <input
-			    	required
-			    // ref={idInputRef}
-			    className="m-1"
-			    pattern="[0-9a-zA-Z]{4}"
-			    type="text"
-			    name="image-id"
-			    id="image-id"
-			    onChange={()=>{
-				setHeroBtn({
-                                title: "Get",
-                                onClick: () => {
-                                    let a = document.querySelector("#get");
-                                    a ? a.click() : console.log(a);
-                                },
-                            });
-			    }}
-			    placeholder="image id"
-				/>
-			    <button id="get">
-			    	get
-			    </button>
-			    </span>
-                        
+                        <span>
+                            <input
+                                required
+                                // ref={idInputRef}
+                                className="m-1"
+                                pattern="[0-9a-zA-Z]{4}"
+                                type="text"
+                                name="image-id"
+                                id="image-id"
+                                onChange={() => {
+                                    setHeroBtn({
+                                        title: "Get",
+                                        onClick: () => {
+                                            let a =
+                                                document.querySelector("#get");
+                                            a ? a.click() : console.log(a);
+                                        },
+                                    });
+                                }}
+                                placeholder="image id"
+                            />
+                            <button id="get">get</button>
+                        </span>
                     )}
                     <button
                         title="clear selection"
                         type="button"
                         onClick={() => {
                             setimageFile();
-			    setHeroBtn({
-				title: "Get",
-				onClick: () => {
-				    let a = document.querySelector("#get");
-				    a ? a.click() : console.log(a);
-				},
-			    });
+                            setHeroBtn({
+                                title: "Get",
+                                onClick: () => {
+                                    let a = document.querySelector("#get");
+                                    a ? a.click() : console.log(a);
+                                },
+                            });
                             // document.getElementById("image").value = "";
                         }}
                         className="bg-red-400 text-2xl border-none font-extrabold hover:bg-red-600 px-2 p-1"
