@@ -208,9 +208,14 @@ function Sender() {
                     title="clear selection"
                     type="button"
                     onClick={() => {
-                        setimageFile();
-                        // document.getElementById("image").value = "";
-                    }}
+			    setHeroBtn({
+				    title: title && "Choose a file",
+				    onClick: () => {
+					document.querySelector("#get-started").scrollIntoView();
+					       setimageFile();
+					// document.getElementById("image").value = "";
+				    }
+			    })}}
                     className="bg-red-400 text-2xl border-none font-extrabold hover:bg-red-600 px-2 p-1"
                 >
                     &#215;
@@ -233,15 +238,42 @@ function Sender() {
                                 name: "",
                             });
                             setimageFile();
-                            // document.getElementById("image").value = "";
-                        }}
+				 setHeroBtn({
+				    title: "Choose a file",
+				    onClick: () => {
+					document.querySelector("#image")?.click();
+				    },
+				});
+			}
+			}
                         className="bg-red-400 absolute right-0 top-0 text-2xl border-none font-extrabold hover:bg-red-600 px-2 "
                     >
                         &#215;
                     </button>
                 </b>
                 <br />
-                <div className="flex gap-2 bg-blue-300 p-1 ">
+                 <div className="flex gap-2 bg-blue-300 p-1 ">
+                    <label htmlFor="id" className=" basis-6">
+                        link
+                    </label>
+                    <span className=" basis-30 flex-1 overflow-hidden ">
+	    {window.location.origin}/receive/{uploaded.dir}
+                    </span>
+                    <button
+                        onClick={() => {
+                            shareInfo({
+                                title: `imagihub | ${uploaded.name}`,
+                                text: uploaded.id,
+                                url:
+                                    document.location.origin +
+                                    "/receive/" +
+                                    uploaded.dir,
+                            });
+                        }}
+                    >
+                        share
+                    </button>
+                </div>               <div className="flex gap-2 bg-blue-300 p-1 ">
                     <label htmlFor="id" className=" basis-6">
                         id
                     </label>
@@ -261,28 +293,7 @@ function Sender() {
                         share
                     </button>
                 </div>
-                <div className="flex gap-2 bg-blue-300 p-1 ">
-                    <label htmlFor="id" className=" basis-6">
-                        link
-                    </label>
-                    <span className=" basis-30 flex-1">
-	    {window.location.origin}/receive/{uploaded.dir}
-                    </span>
-                    <button
-                        onClick={() => {
-                            shareInfo({
-                                title: `imagihub | ${uploaded.name}`,
-                                text: uploaded.id,
-                                url:
-                                    document.location.origin +
-                                    "/receive/" +
-                                    uploaded.dir,
-                            });
-                        }}
-                    >
-                        share
-                    </button>
-                </div>
+
 	    <p className="p-1 rounded-sm bg-red-300 text-red-800">To optimize performance, images are deleted after 2 hours. Stay tuned for future updates on extended storage!</p>
             </div>
         </>
@@ -386,7 +397,7 @@ function Receiver() {
                     console.warn(id);
                     e.preventDefault();
 			fetch(`/api/v1/anon/image/${id}`)
-			.then(r=>r.json())
+			.then(r=>r.ok?r.json():Promise.reject(r))
 			.then(data=>{
 				let {name, dir} = data;
 			dir && getImage(dir);

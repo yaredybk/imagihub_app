@@ -248,29 +248,13 @@ async function NetworkFirst(e, n, altpath) {
  * @param {String} n cache name/folder to open
  */
 async function CacheFirst(e, n) {
-    e.respondWith(
-        caches
-            .open(n)
-            .then(async (c) => {
-                const r = await c.match(e.request);
-                if (r) return r;
-                else {
-                    return fetch(e.request).then((r2) => {
-                        const r3 = r2.clone();
-                        if (!r2) return r2; //OFFLINE
-                        e.waitUntil(c.put(e.request, r3));
-                        return r2;
-                    });
-                }
-            })
-            .catch((e) =>
-                fetch(e.request).then((r2) => {
-                    const r3 = r2.clone();
-                    if (!r2) return r2; //OFFLINE
-                    return e.waitUntil(c.put(e.request, r2)), r2;
-                })
-            )
-    );
+	const c = await caches.open(n);
+	const r = await c.match(e.request);
+	if (r) return r;
+        const nr =await fetch(e.request)
+        const r3 = r2.clone();
+        if (!r2.ok) return r2; //OFFLINE
+	    return r2, e.waitUntil(c.put(e.request, r2));
 }
 
 /**
