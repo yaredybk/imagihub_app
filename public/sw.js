@@ -146,8 +146,11 @@ self.addEventListener("fetch", async (e) => {
         case A.pathname.startsWith("/send"):
         case A.pathname.startsWith("/receive"):
         case A.pathname.match(/get-shared/):
-            NetworkFirst(e, "pre-cache", "/");
+            CacheFirst(e, "pre-cache", "/");
             break;
+        case A.pathname.startsWith("/about"):
+        case A.pathname.startsWith("/help"):
+            NetworkFirst(e,"pre-cache")
 
         // images get route
         case A.pathname.startsWith("/api/v1/anon/images") &&
@@ -204,7 +207,7 @@ self.addEventListener("fetch", async (e) => {
 
         // networkfirst with index.html for all documents
         case e.request.destination == "document":
-            NetworkFirst(e, "pre-cache", "/");
+            NetworkFirst(e, "pre-cache");
             break;
 
         // Default (no matching route)

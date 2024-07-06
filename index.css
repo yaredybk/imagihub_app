@@ -32,9 +32,9 @@ header {
     top: 0px;
     z-index: 100;
 }
-div.mini-header {
+/* div.mini-header {
     display: none;
-}
+} */
 @keyframes spin {
     0%,
     100% {
