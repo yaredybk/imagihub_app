@@ -1,4 +1,5 @@
 import React from "react";
+import ClearHistory from "./ClearHistory";
 
 /**
  * Renders a list of historical images.
@@ -9,10 +10,16 @@ import React from "react";
  *     - `props.listImages[].name`: {string} The name of the image file.
  *     - `props.listImages[].id`: {string} (optional) A unique identifier for the image.
  * @param {string} title
- * @param {Function} onClick 
+ * @param {Function} onClick
  * @returns {JSX.Element} The JSX element representing the rendered history list.
  */
-export default function RenderHistoryList({ listImages = [],title="sent images" ,onClick=()=>{}}) {
+export default function RenderHistoryList({
+    children,
+    listImages = [],
+    title = "sent images",
+    onClick = () => {},
+    onClearHistory = () => {},
+}) {
     return (
         <div className="grid gap-1 overflow-y-auto p-1">
             <center>
@@ -21,13 +28,16 @@ export default function RenderHistoryList({ listImages = [],title="sent images" 
             {listImages?.map((i, ind) => (
                 <button
                     // to={i?.dir}
-                    onClick={()=>onClick(i)}
+                    onClick={() => onClick(i)}
                     className=" text-left border  bg-gray-200 p-1 rounded-sm"
                     key={ind + i.name}
                 >
                     {i.name}
                 </button>
             ))}
+            {children}
+            <br />
+            <ClearHistory onClick={() => {}} />
         </div>
     );
 }

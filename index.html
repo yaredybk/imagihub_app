@@ -7,17 +7,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>imagihub</title>
 	<link rel="stylesheet" href="index.css">
+	<link rel="manifest" href="/manifest.json">
 </head>
 
 <body>
 	<header>
 		<a style="text-decoration: none;" href="/">
 			<b>
-				<img width="32" height="32" src="/favicon.png" alt="favicon">
+				<img width="auto" height="32" src="/favicon.png" alt="favicon">
 				Imagihub
 			</b>
 		</a>
-
+		<span class="nav-btn" id="nav-btn" >
+			<a href="/about">about</a>
+			<!-- <a href="/send">send</a><a href="/recieve">recieve</a> -->
+		</span>
 	</header>
 	<section class="hero">
 		<span>
@@ -34,22 +38,35 @@
 	<section class="feature">
 		<h1>Features</h1>
 		<article>
-			<legend>
-				<h2>Easy sending !</h2>
-			</legend>
-			<img class="screen-shoot" src="/public/images/Capture_send.JPG" alt="sending">
 			<p>
-				Your images are one click away from reaching its destination!
+				Your images are one click away from reaching their destination!
 			</p>
+				<h2>Easy sending</h2>
+			<img class="screen-shoot" src="uploading.../images/Capture_send.webp" alt="sending">
 		</article>
 		<article>
-			<legend>
-				<h2>the history</h2>
-			</legend>
-			<img class="screen-shoot" src="/public/images/Capture_send.JPG" alt="sending">
 			<p>
 				have a look at all your history sent or recived
 			</p>
+				<h2>the history</h2>
+			<div class="cluster">
+				<img class="screen-shoot" src="uploading.../g.../images/history_list.webp" alt="history">
+				<img class="screen-shoot" src="uploading.../images/history_list_recieved.webp" alt="history">
+			</div>
+		</article>
+		<article>
+				<h2>reach sharing options</h2>
+				<img class="screen-shoot" src="uploading.../images/sharing_options.webp" alt="sharing options">
+			<div class="p">
+				<p>
+					share with what ever suites your needs.
+				</p>
+				<ul>
+					<li>full url</li>
+					<li>a unique ID</li>
+					<li>or just the image as a file</li>
+				</ul>
+			</div>
 		</article>
 	</section>
 	<div id="root"></div>

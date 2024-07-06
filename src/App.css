@@ -1,8 +1,5 @@
 @tailwind utilities;
 
-body {
-	font-family: monospace;
-}
 div#get-started {
     margin-top: var(--h-header);
     width: fit-content;
@@ -20,6 +17,7 @@ div.image-container {
     display: flex;
     /* display: none; */
     flex-direction: column;
+    justify-content: space-between;
 }
 div.image-container img {
     /* width:min(20rem, 100%); */
@@ -36,9 +34,18 @@ div.image-container img {
     overflow: hidden;
     object-fit: contain;
 }
-div.test{
-    background-image: repeating-linear-gradient(-30deg, var(--c1) 1rem, var(--c2) 2rem, rgb(160, 160, 160) 0.5rem);
-    /* background-size: 20% 20%; */
-    background-repeat: repeat;
-height: 80vh;
+div.image-container img.preview {
+    flex-grow: 0;
+    height: 2rem;
+    width: auto;
+}
+form#image-form{
+    margin-top: auto;
+
+}
+
+.image-info{
+    background-color: var(--c2);
+    background-color: hsl(from var(--c2) h s l / 0.6);
+    backdrop-filter: blur(2px);
 }
