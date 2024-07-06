@@ -9,7 +9,7 @@
     "copy":"cp ./dist/index.html ./dist/send.html",
     "remove_l":"sed -i '/<section class/,/section>/d' ./dist/send.html",
     "copy2":"cp  ./dist/send.html ./dist/recieve.html ",
-    "build": "vite build && copy ",
+    "build": "vite build ",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
