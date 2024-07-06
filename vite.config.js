@@ -17,7 +17,7 @@ export default defineConfig({
         // fs: {
         //     allow: [
         //         "./",
-        //         "../uploading.../",
+        //         "..//",
         //         "..//",
         //     ],
         // },
