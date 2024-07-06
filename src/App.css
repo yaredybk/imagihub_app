@@ -7,7 +7,6 @@ div#get-started {
     margin-top: var(--h-header);
     width: fit-content;
     margin-inline: auto;
-    padding-inline: 0.2rem;
     width: min(40rem, 98%);
     margin-bottom: 3rem;
     box-shadow: 4px 4px 5px 2px black, -2px -2px 8px 2px gray;
@@ -15,7 +14,6 @@ div#get-started {
 div.image-container {
     width: min(40rem, 100%);
     height: min(80vh, 24rem);
-    outline: gray 1px solid;
     box-sizing: border-box;
     position: relative;
     overflow: hidden;

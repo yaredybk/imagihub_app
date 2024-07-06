@@ -24,3 +24,4 @@ dist-ssr
 public_back
 cert/
 tmp/
+dist/
