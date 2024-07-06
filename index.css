@@ -4,6 +4,8 @@ body {
     margin: 0;
     --c1: orange;
     --c2: rgb(0, 145, 255);
+    --c1-d: rgb(133, 86, 0);
+    --c2-d: rgb(0, 94, 165);
     --c3: gray;
     --c3: white;
 }
@@ -19,7 +21,7 @@ header {
     z-index: 20;
 }
 
-header h1 {
+header b {
     font-family: cursive, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     display: flex;
     align-items: center;
@@ -28,30 +30,47 @@ header h1 {
     margin-block: 0.3rem;
     font-size: 1.5rem;
 }
+h1{
+    color:var(--c2);
+    background-image: repeating-linear-gradient(-30deg, var(--c1-d) 8rem, var(--c2-d) 20rem, rgb(160, 160, 160) 3rem);
+    background-clip: text;
+    background-attachment: fixed;
+    color: transparent;
+    text-shadow: 1px 8px rgba(125, 125, 125, 0.2);
+    font-size: 2rem;    
+}
+.hero h1{
+    font-size: clamp(1.3rem, 5vw, 2.5rem) ;
+}
 
 header img {
     vertical-align: middle;
     padding-inline: 0.5rem;
 }
-
+section{
+    min-height: calc(100vh - var(--h-header));
+    min-height: calc(100dvh - var(--h-header));
+}
 section.hero {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: calc(100vh - var(--h-header));
-    min-height: calc(100dvh - var(--h-header));
-    max-width: 50rem;
+    
+    max-width: 80rem;
     margin-inline: auto;
     background-repeat: no-repeat;
     background: url("/images/landing2.png") no-repeat right;
-    background-size: 100% auto;
+    background-size: contain;
+    background-size: auto 100% ;
+    background-attachment: fixed;
+    position:relative;
 }
 
 section.hero::before,
 section.hero::after {
     content: "";
-    height: 90dvh;
+    height: 100%;
     z-index: -1;
     position: absolute;
     left: 0;
@@ -74,16 +93,14 @@ section.hero div {
 }
 
 section.hero h2 {
-    background-image: repeating-linear-gradient(-30deg, var(--c1) 10rem, var(--c2) 20rem, rgb(160, 160, 160) 10rem);
-    background-clip: text;
-    background-attachment: fixed;
-    color: transparent;
-    text-shadow: 1px 8px rgba(144, 211, 255, 0.2);
     font-size: max(3rem, 4vw);
 }
 
 section.hero p {
     font-weight: bolder;
+}
+.screen-shoot{
+    height: 20rem;
 }
 input:invalid{
     background-color: rgba(255, 0, 0, 0.2);

@@ -26,11 +26,3 @@ a.get-started:focus-visible {
     outline-width: 2px;
     transition: outline-offset ease 200ms;
 }
-div#get-started {
-    margin-top: var(--h-header);
-    width: fit-content;
-    margin-inline: auto;
-    width: min(20rem, 100%);
-    margin-bottom: 3rem;
-    box-shadow: 4px 4px 5px 2px black, -2px -2px 8px 2px gray;
-}
