@@ -17,6 +17,10 @@ a.get-started {
     border-radius: 1.5rem;
     box-shadow: 0px 0px 10px 5px rgb(91, 217, 255);
     outline: blue 1px solid;
+    /* display: flex; */
+    max-width: 95vw;
+    text-align: center;
+    z-index: 50;
     /* animation: bg-loop 1s ease  infinite  ; */
     /* transition: all ease 3s; */
 }

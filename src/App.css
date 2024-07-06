@@ -1,8 +1,5 @@
 @tailwind utilities;
 
-body {
-	font-family: monospace;
-}
 div#get-started {
     margin-top: var(--h-header);
     width: fit-content;
@@ -45,4 +42,10 @@ div.image-container img.preview {
 form#image-form{
     margin-top: auto;
 
+}
+
+.image-info{
+    background-color: var(--c2);
+    background-color: hsl(from var(--c2) h s l / 0.6);
+    backdrop-filter: blur(2px);
 }

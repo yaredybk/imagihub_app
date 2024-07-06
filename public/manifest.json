@@ -1,20 +1,57 @@
 {
-    "name": "imagihub image sharing",
     "short_name": "imagihub",
-    "start_url": "/",
-    "display": "standalone",
-    "background_color": "#0091ff",
-    "lang": "en",
-    "scope": "/",
-    "description": "instant image sharing web app",
-    "id": "/",
-    "theme_color": "#ffa500",
+    "name": "imagihub image sharing",
     "icons": [
         {
             "src": "favicon.png",
             "sizes": "220x220"
         }
     ],
+    "id": "/",
+    "start_url": "/send?source=pwa",
+    "background_color": "#0091ff",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#ffa500",
+    "theme_display": "fullscreen",
+    "shortcuts":[
+        {
+            "name":"send images",
+            "short_name":"send",
+            "description":"send images to anyone on the internet",
+            "url":"/send",
+            "icons":[{
+                    "src": "favicon.png",
+                    "sizes": "220x220"
+            }]
+        },
+        {
+            "name":"recieve images",
+            "short_name":"recieve",
+            "description":"get images from anyone from the internet",
+            "url":"/recieve",
+            "icons":[{
+                    "src": "favicon.png",
+                    "sizes": "220x220"
+            }]
+        }
+    ],
+    "description": "instant image sharing web app",
+    "screenshots": [
+        {
+          "src": "/images/history_list.png",
+          "type": "image/png",
+          "form_factor": "narrow",
+          "sizes":"670x502"
+        },
+        {
+            "src": "/images/screenshoot_wide.png",
+            "type": "image/jpg",
+            "form_factor": "wide",
+            "sizes":"1351x640"
+        }
+      ],
+    "lang": "en",
     "orientation": "portrait",
     "categories": ["productivity", "Business", "Finance", "Social"],
     "prefer_related_applications": false,
@@ -48,7 +85,6 @@
             ]
         }
     },
-    "theme_display": "fullscreen",
     "developer": { "name": "Yared Bekuru", "email": "yb12ybk@gmail.com" },
     "permissions": [],
     "serviceworker": { "script": "/sw.js" },

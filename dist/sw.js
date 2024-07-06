@@ -155,7 +155,7 @@ self.addEventListener("fetch", async (e) => {
             CacheFirst(e, "sent_images");
             break;
 
-            // i can not fix request.clone() then r.formdata() ERROR
+        // i can not fix request.clone() then r.formdata() ERROR
         // images get route
         // case A.pathname.startsWith("/api/v1/anon/images") &&
         //     e.request.method === "POST":
@@ -209,7 +209,7 @@ self.addEventListener("fetch", async (e) => {
 
         // Default (no matching route)
         default:
-		    return;
+            return;
         // Handle the case where no matching route is found
         // console.warn("Unmatched route:", A.pathname);
         // returning a default response, or using a fallback strategy.
@@ -222,39 +222,34 @@ self.addEventListener("fetch", async (e) => {
  * @param {url} n url to fetch altpath || e.request
  */
 async function NetworkFirst(e, n, altpath) {
-    e.respondWith(
-        fetch(altpath || e.request)
-            .then((r) => {
-                if (r) {
-                    let r2 = r.clone();
-                    e.waitUntil(
-                        caches
-                            .open(n)
-                            .then((c) => c.put(altpath || e.request, r2))
-                    );
-                    return r;
-                } else {
-                    //offline
-                    return caches.open(n).then((c) => c.match(e.request));
-                }
-            })
-            .catch(async () => {
+    return fetch(altpath || e.request)
+        .then((r) => {
+            if (r) {
+                let r2 = r.clone();
+                e.waitUntil(
+                    caches.open(n).then((c) => c.put(altpath || e.request, r2))
+                );
+                return r;
+            } else {
+                //offline
                 return caches.open(n).then((c) => c.match(e.request));
-            })
-    );
+            }
+        })
+        .catch(async () => {
+            return caches.open(n).then((c) => c.match(e.request));
+        });
 }
 /**
  * @param {Object} e fetch event
  * @param {String} n cache name/folder to open
  */
 async function CacheFirst(e, n) {
-	const c = await caches.open(n);
-	const r = await c.match(e.request);
-	if (r) return r;
-        const nr =await fetch(e.request)
-        const r3 = r2.clone();
-        if (!r2.ok) return r2; //OFFLINE
-	    return r2, e.waitUntil(c.put(e.request, r2));
+    const c = await caches.open(n);
+    const r = await c.match(e.request);
+    if (r) return r;
+    const nr = await fetch(e.request);
+    const r3 = nr.clone();
+    return nr, nr.ok && nr.status < 300 && e.waitUntil(c.put(e.request, r3));
 }
 
 /**
@@ -266,20 +261,19 @@ async function CacheFirst(e, n) {
 async function StoreAndPost(e, n, k) {
     let r2 = e.request.clone();
     e.respondWith(
-        fetch(e.request)
-            .then((r) => {
-                return (
-                    r,
-                    r &&
-                        e.waitUntil(
-                            caches.open(n).then(async (c) => {
-                                let f = r2.formData();
-                                let d = f.get(k);
-                                c.put(r2.url, new Response(d));
-                            })
-                        )
-                );
-            })
+        fetch(e.request).then((r) => {
+            return (
+                r,
+                r &&
+                    e.waitUntil(
+                        caches.open(n).then(async (c) => {
+                            let f = r2.formData();
+                            let d = f.get(k);
+                            c.put(r2.url, new Response(d));
+                        })
+                    )
+            );
+        })
     );
 }
 /**

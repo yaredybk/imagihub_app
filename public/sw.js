@@ -222,26 +222,22 @@ self.addEventListener("fetch", async (e) => {
  * @param {url} n url to fetch altpath || e.request
  */
 async function NetworkFirst(e, n, altpath) {
-    e.respondWith(
-        fetch(altpath || e.request)
-            .then((r) => {
-                if (r) {
-                    let r2 = r.clone();
-                    e.waitUntil(
-                        caches
-                            .open(n)
-                            .then((c) => c.put(altpath || e.request, r2))
-                    );
-                    return r;
-                } else {
-                    //offline
-                    return caches.open(n).then((c) => c.match(e.request));
-                }
-            })
-            .catch(async () => {
+    return fetch(altpath || e.request)
+        .then((r) => {
+            if (r) {
+                let r2 = r.clone();
+                e.waitUntil(
+                    caches.open(n).then((c) => c.put(altpath || e.request, r2))
+                );
+                return r;
+            } else {
+                //offline
                 return caches.open(n).then((c) => c.match(e.request));
-            })
-    );
+            }
+        })
+        .catch(async () => {
+            return caches.open(n).then((c) => c.match(e.request));
+        });
 }
 /**
  * @param {Object} e fetch event
@@ -253,7 +249,7 @@ async function CacheFirst(e, n) {
     if (r) return r;
     const nr = await fetch(e.request);
     const r3 = nr.clone();
-    return nr, !nr.ok && e.waitUntil(c.put(e.request, r3));
+    return nr, nr.ok && nr.status < 300 && e.waitUntil(c.put(e.request, r3));
 }
 
 /**

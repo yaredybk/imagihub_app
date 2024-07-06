@@ -1,7 +1,7 @@
 {
     "name": "imagihub image sharing",
     "short_name": "imagihub",
-    "start_url": "/",
+    "start_url": "/send",
     "display": "standalone",
     "background_color": "#0091ff",
     "lang": "en",
