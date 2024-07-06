@@ -12,7 +12,7 @@ import React from "react";
  * @param {Function} onClick 
  * @returns {JSX.Element} The JSX element representing the rendered history list.
  */
-export default function RenderHistoryList({ listImages = [],title="sent images" ,onClick=()=>{}}) {
+export default function RenderHistoryList({children, listImages = [],title="sent images" ,onClick=()=>{}}) {
     return (
         <div className="grid gap-1 overflow-y-auto p-1">
             <center>
@@ -28,6 +28,7 @@ export default function RenderHistoryList({ listImages = [],title="sent images" 
                     {i.name}
                 </button>
             ))}
+            {children}
         </div>
     );
 }

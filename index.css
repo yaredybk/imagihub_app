@@ -1,3 +1,6 @@
+*{
+    box-sizing: border-box;
+}
 body {
     --mar1: 0.5rem;
     --h-header:3rem;
@@ -99,9 +102,69 @@ section.hero h2 {
 section.hero p {
     font-weight: bolder;
 }
+section.feature {
+    display: grid;
+    gap: 0.5rem;
+    margin-inline: auto;
+    /* width: fit-content; */
+    max-width: 70rem;
+}
+.feature article{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1rem;
+    position: relative;
+    padding: 5rem 1rem;
+    background-color: rgba(255, 153, 0, 0.1);
+}
+@media only screen and (max-width: 720px ) {
+    .feature article{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+.feature article > p,.feature div.p{
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    padding: 1rem 1rem;
+    margin: 0;
+    background-image: linear-gradient(to top, var(--c1) 3%, var(--c3) 40%, var(--c3) 60%, transparent 100%);
+
+}
+
 .screen-shoot{
-    height: 20rem;
+    width: 20rem;
+    min-height: 10rem;
+    height: auto;
+    box-shadow: 2px 2px 5px 5px rgb(87, 87, 87);
+    border-radius: 0.5rem;
+}
+.cluster{
+    display: grid;
+    margin-right: 4rem;
+}
+.cluster img{
+    grid-row: 1;
+    grid-column: 1;
+    max-width: 60vw;
+}
+.cluster img:first-child{
+    transform: translateY(-1.5rem) ;
+}
+.cluster img:last-child{
+    transform: translateX(3rem) translateY(1rem) rotate(1deg);
+    opacity: 0.9;
+}
+input,button{
+    padding: 5px 10px;
+    border-width: 1px;
+    border-radius: 3px;
 }
 input:invalid{
     background-color: rgba(255, 0, 0, 0.2);
+}
+button{
+    cursor: pointer;
 }
