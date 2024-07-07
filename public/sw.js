@@ -141,10 +141,11 @@ self.addEventListener("fetch", async (e) => {
     const A = new URL(e.request.url);
     // Different ORIGIN
     switch (true) {
+         case A.pathname.startsWith("/send"):
+        case A.pathname.startsWith("/receive"):
+            CacheFirst(e, "pre-cache", "/send");
         // Pre-cache routes
         case A.pathname === "/":
-        case A.pathname.startsWith("/send"):
-        case A.pathname.startsWith("/receive"):
         case A.pathname.match(/get-shared/):
             CacheFirst(e, "pre-cache", "/");
             break;
