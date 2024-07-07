@@ -156,7 +156,7 @@ self.addEventListener("fetch", async (e) => {
         // images get route
         case A.pathname.startsWith("/api/v1/anon/images") &&
             e.request.method === "GET":
-            CacheFirst(e, "sent_images");
+            CacheFirst(e, "images");
             break;
 
         // i can not fix request.clone() then r.formdata() ERROR
