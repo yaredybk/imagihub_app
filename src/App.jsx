@@ -35,9 +35,7 @@ function App() {
 
         return () => {};
     }, []);
-    function toggleMenu() {
-        document.getElementById("nav-btn").classList.toggle("expanded");
-    }
+
     return (
         <HeroContext.Provider value={{ ...heroBtn, setHeroBtn }}>
             {createPortal(
@@ -77,16 +75,17 @@ function App() {
     );
 }
 export default App;
-
+function toggleMenu(state = "toggle", className = "expanded", id = "nav-btn") {
+    let ele = document.getElementById(id).classList;
+    if (state == "close") ele.remove(className);
+    else ele.toggle(className);
+}
 function MiniHeader() {
     const { pathname } = useLocation();
-    function toggleMenu() {
-        document.getElementById("nav-btn").classList.toggle("expanded");
-    }
     return (
         <>
             <Link
-                onClick={toggleMenu}
+                onClick={() => toggleMenu("close")}
                 to="/send#get-started"
                 style={{
                     backgroundColor: "/,/send".match(pathname)
@@ -97,7 +96,7 @@ function MiniHeader() {
                 send
             </Link>
             <Link
-                onClick={toggleMenu}
+                onClick={() => toggleMenu("close")}
                 to="/receive#get-started"
                 style={{
                     backgroundColor: pathname.match("receive")
