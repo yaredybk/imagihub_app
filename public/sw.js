@@ -154,9 +154,13 @@ self.addEventListener("fetch", async (e) => {
             NetworkFirst(e,"pre-cache")
 
         // images get route
+        case A.pathname.startsWith("/local/sent_images/"):
+            CacheFirst(e, "sent_images");
+            break;
+        // images get route
         case A.pathname.startsWith("/api/v1/anon/images") &&
             e.request.method === "GET":
-            CacheFirst(e, "images");
+            CacheFirst(e, "received_images");
             break;
 
         // i can not fix request.clone() then r.formdata() ERROR
@@ -253,7 +257,8 @@ async function CacheFirst(e, n) {
     if (r) return r;
     const nr = await fetch(e.request);
     const r3 = nr.clone();
-    return nr, nr.ok && nr.status < 300 && e.waitUntil(c.put(e.request, r3));
+    nr.ok && nr.status < 300 && e.waitUntil(c.put(e.request, r3));
+    return nr;
 }
 
 /**

@@ -66,7 +66,6 @@ export default function Receiver() {
                 });
             })
             .catch((e) => {
-                console.log(e.statusText);
                 setHeroBtn({
                     title: e.statusText || "Failed",
                     onClick: () => {
@@ -81,6 +80,7 @@ export default function Receiver() {
      * @param {string} idin image id note: will be used as priority
      */
     function getDir(event, idin) {
+        event && event.preventDefault();
         let id = idin || event.target[0].value;
         if (!id) return console.warn("no id");
         setHeroBtn({ title: "Loading...", onClick: () => null });
@@ -101,7 +101,7 @@ export default function Receiver() {
 
                 console.warn(er);
             });
-        event && event.preventDefault();
+        
     }
     return (
         <>
@@ -132,7 +132,11 @@ export default function Receiver() {
                     </h2>
                 </label>
             )}
-            <form className=" mt-auto flex  " onSubmit={getDir}>
+            <form
+                id="get-image-id"
+                className=" mt-auto flex  "
+                onSubmit={getDir}
+            >
                 <label className=" mt-auto flex gap-1 w-full justify-between bg-gray-300 ">
                     {imageFile ? (
                         <>
@@ -161,6 +165,11 @@ export default function Receiver() {
                                         onClick: () => {
                                             let a =
                                                 document.querySelector("#get");
+                                            let f =
+                                                document.querySelector(
+                                                    "#get-image-id"
+                                                );
+                                            f.submit();
                                             a ? a.click() : console.log(a);
                                         },
                                     });
@@ -179,6 +188,11 @@ export default function Receiver() {
                                 title: "Get",
                                 onClick: () => {
                                     let a = document.querySelector("#get");
+                                    let f =
+                                                document.querySelector(
+                                                    "#get-image-id"
+                                                );
+                                            f.submit();
                                     a ? a.click() : console.log(a);
                                 },
                             });

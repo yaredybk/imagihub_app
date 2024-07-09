@@ -2,7 +2,6 @@ import { useContext, useState, useEffect } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { HeroContext } from "../App";
 import RenderHistoryList from "./RenderHistoryList";
-import ClearHistory from "./ClearHistory";
 import { shareInfo } from "../utils/utils";
 import BtnDownload from "./BtnDownload";
 
@@ -28,7 +27,6 @@ export default function Sender() {
         });
         let n = document.addEventListener("paste", (e) => {
             let con = e.clipboardData;
-            console.log(con);
             let files = con.files;
             if (files.length > 0) {
                 setSelectedImage(files[0]);
@@ -77,15 +75,16 @@ export default function Sender() {
                 });
                 let { dir, name, id } = r.new;
                 if (window.location.protocol !== "https:") return;
-                return caches
-                    .open("sent_images")
-                    .then((c) =>
-                        c.put(
-                            `/api/v1/anon/images/${dir}`,
-                            new Response(imageFile)
-                        )
-                    )
-                    .catch((e) => console.warn(e));
+                // return caches
+                //     .open("sent_images")
+                //     .then(async (c) => {
+                //         console.log(imageFile);
+                //         c.put(
+                //             `/api/v1/anon/sent_images/${dir}`,
+                //             new Response(imageFile)
+                //         ).catch(console.warn);
+                //     })
+                //     .catch((e) => console.warn(e));
             })
             .catch((e) => {
                 console.warn(e);
@@ -116,11 +115,12 @@ export default function Sender() {
                 <RenderHistoryList
                     onClick={(im) => {
                         setUploaded(im);
-                        fetch(`/api/v1/anon/images/${im.dir}`)
+                        fetch(`/api/v1/anon/sent_images/${im.dir}`)
                             .then((r) => (r.ok ? r.blob() : Promise.reject(r)))
                             .then((i) => {
                                 setimageFile(i);
-                            });
+                            })
+                            .catch(console.warn);
                         // setimageFile();
                         setHeroBtn({
                             title: "share",
@@ -308,7 +308,6 @@ export default function Sender() {
                     </button>
                     <button
                         onClick={() => {
-                            console.log(imageFile);
                             const file = new File([imageFile], uploaded.name, {
                                 type: imageFile.type,
                             });
