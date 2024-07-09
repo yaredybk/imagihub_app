@@ -37,7 +37,14 @@ export default function RenderHistoryList({
             ))}
             {children}
             <br />
-            <ClearHistory onClick={() => {}} />
+            <ClearHistory
+                onClick={() => {
+                    onClearHistory();
+                    let key = title.replace(" ", "_");
+                    localStorage.removeItem(key);
+                    caches.delete(key);
+                }}
+            />
         </div>
     );
 }
