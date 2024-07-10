@@ -16,7 +16,7 @@ body {
 }
 body > * {
     padding-inline: 5px;
-    max-width: var(--con-wid);
+/*    max-width: var(--con-wid);*/
     margin-inline: auto;
 }
 body > header {
@@ -125,7 +125,7 @@ section.hero {
     flex-direction: column;
     justify-content: center;
 
-    max-width: var(--con-wid);
+/*    max-width: var(--con-wid);*/
     margin-inline: auto;
     background-repeat: no-repeat;
     background: url("/images/landing2.webp") no-repeat right;
@@ -180,7 +180,7 @@ section.feature {
     gap: 0.5rem;
     margin-inline: auto;
     /* width: fit-content; */
-    max-width: var(--con-wid);
+/*    max-width: var(--con-wid);*/
 }
 .feature article {
     display: flex;

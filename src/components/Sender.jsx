@@ -75,16 +75,21 @@ export default function Sender() {
                 });
                 let { dir, name, id } = r.new;
                 if (window.location.protocol !== "https:") return;
-                // return caches
-                //     .open("sent_images")
-                //     .then(async (c) => {
-                //         console.log(imageFile);
-                //         c.put(
-                //             `/api/v1/anon/sent_images/${dir}`,
-                //             new Response(imageFile)
-                //         ).catch(console.warn);
-                //     })
-                //     .catch((e) => console.warn(e));
+                return caches
+                    .open("sent_images")
+                    .then(async (c) => {
+                        console.log(imageFile);
+			    let i = new Blob([imageFile],{ type: imageFile.type});
+                        console.log(i);
+                        c.put(
+                            `/api/v1/anon/sent_images/${dir}`,
+                            new Response(i,{
+				    'Content-Type': imageFile.type,
+				    'Content-Length': imageFile.size.toString()
+			    })
+                        ).catch(console.warn);
+                    })
+                    .catch((e) => console.warn(e));
             })
             .catch((e) => {
                 console.warn(e);
