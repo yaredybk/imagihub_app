@@ -3,22 +3,22 @@ https://imagihub.yaredb.tech
 
 #Welcome to the ImagiHub Node.js server repository!
 
-ImagiHub_app is a react app for a simple image sharing web application. It aims to provide a user-friendly and efficient way to share images without the limitations of existing platforms.
+ImagiHub_app is a react app for a simple image-sharing web application. It aims to provide a user-friendly and efficient way to share images without the limitations of existing platforms.
 
 -----------------------------------------------------------
 
 We are living in a digital world, but the hustle to just send an image,
 
 * You need to login
-* You must use same social media
+* You must use the same social media
 * The image is compressed
-* You need to share it to every one or create a group
-* Most of the time you need android
-There are a ton of solutions for this. I just want to contribute to the cause, make an alternative easy way of sharing images.
+* You need to share it with everyone or create a group
+* Most of the time you need an android
+There are a ton of solutions for this. I just want to contribute to the cause and make an alternative easy way of sharing images.
 
 -----------------------------------------------------------
 
-This repository contains the front-end code for ImagiHub, a user-friendly image sharing web application built with React, Vite, and Tailwind CSS.
+This repository contains the front-end code for ImagiHub, a user-friendly image-sharing web application built with React, Vite, and Tailwind CSS.
 
 ## Features:
 * Effortless Image Uploads:
@@ -35,7 +35,7 @@ This repository contains the front-end code for ImagiHub, a user-friendly image 
 * Streamlined User Experience:
   * Maintain a history of sent and received images for easy reference.
   * Effortlessly clear your image history with a single click.
-  * Store all images in browser cache for optimal performance.
+  * Store all images in the browser cache for optimal performance.
   * Ensure seamless image deletion when clearing history.
 * Enhanced User Engagement:
   * Benefit from a fully configured Web Manifest file for improved discoverability.
@@ -60,7 +60,7 @@ This will start the development server and open the application in your default 
 * Feel free to explore the code and contribute to the project's growth!
 
 ## Back-end Integration:
-* The back-end code (node.js server) is located in a separate repository and gives this app its functionality through API calls.
+* The backend code (node.js server) is located in a separate repository and gives this app its functionality through API calls.
 
 ## Developer
 * Name  Yared b.
@@ -76,7 +76,7 @@ This will start the development server and open the application in your default 
 ## Acknowledgments
 * [ALX Africa - ALX Africa](https://www.alxafrica.com/)
 * [.Tech Domains](https://get.tech)
-* this list is not complete
+* To all my family and friends who continue to encourage me
 * I had some help setting up this README file from [Gemini by Google](https://gemini.google.com). Their large language model capabilities were instrumental in providing guidance and suggestions.
 
 
